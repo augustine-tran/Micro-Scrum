@@ -61,7 +61,7 @@ class Project extends TrackStarActiveRecord
 	        return array(
 	            'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
 	            'users' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
-//	            'columns' => array(self::MANY_MANY, 'Column', 'tbl_project_user_assignment(project_id, user_id)'),
+	            'columns' => array(self::MANY_MANY, 'Column', 'tbl_project_column(project_id, column_id)'),
 	        );
 	}
 	
@@ -191,14 +191,6 @@ class Project extends TrackStarActiveRecord
 		$command->bindValue(":userId", $user->id, PDO::PARAM_INT);
 		return $command->execute()==1 ? true : false;
 	}
-	
-	
-	 
-	
-	
-	
-	
-	
 	
 	
 }
