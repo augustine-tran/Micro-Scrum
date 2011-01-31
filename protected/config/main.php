@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'TrackStar',
-	'homeUrl'=>'/trackstar/index-test.php/project',
+	'homeUrl'=>'/trackstar/index.php/project',
 	'theme'=>'new',
 
 	// preloading 'log' component
@@ -101,9 +101,9 @@ return array(
 				),
 			),
 		),
-		'cache'=>array(
-		    'class'=>'system.caching.CFileCache',
-		),
+//		'cache'=>array(
+//		    'class'=>'system.caching.CFileCache',
+//		),
 		
 	),
 
