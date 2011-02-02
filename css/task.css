@@ -2,6 +2,7 @@
 	margin-right: 10px;
 	float: left;
 	width: 260px;
+	background-color: #EDEDED;
 }
 
 .column-header {
@@ -9,18 +10,18 @@
 }
 
 .column-body {
-	border: solid 1px #AFCCEE;
+	/*border: solid 1px #AFCCEE*/;
 	min-height: 400px;
 }
 
 .task {
 	margin: 2px 0 10px;
-	background: #ECECEC;
 	line-height: 1.2em;
 	position: relative;
 }
 
 .task-header {
+	background: #ECECEC;
 	margin-top: 2px;
 	border-top: 1px solid white;
 	position: relative;

@@ -22,6 +22,7 @@ class Issue extends TrackStarActiveRecord
 	 * @var integer $project_id
 	 * @var integer $type_id
 	 * @var integer $status_id
+	 * @var integer $sprint_id
 	 * @var integer $owner_id
 	 * @var integer $requester_id
 	 * @var string $create_time
@@ -62,7 +63,7 @@ class Issue extends TrackStarActiveRecord
 			array('create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, project_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
+			array('id, name, description, project_id, sprint_id, column_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,6 +93,7 @@ class Issue extends TrackStarActiveRecord
 			'name' => 'Name',
 			'description' => 'Description',
 			'project_id' => 'Project',
+			'sprint_id' => 'Sprint',
 			'type_id' => 'Type',
 			'status_id' => 'Status',
 			'owner_id' => 'Owner',

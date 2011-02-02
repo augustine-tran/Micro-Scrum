@@ -41,7 +41,7 @@ class ProjectController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'moveTaskToBackLog'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -246,5 +246,17 @@ class ProjectController extends Controller
 		}
 		$form->project = $project;
 		$this->render('adduser',array('model'=>$form, 'usernames'=>$usernames)); 
+	}
+	
+	public function actionMoveTaskToBackLog() {
+		$this->loadModel();
+		if (isset($_POST['SprintIssueForm'])) {
+			$form = new SprintIssueForm();
+			$form->attributes=$_POST['SprintIssueForm'];
+			$form->project = $this->_model;
+			if ($form->validate()) {
+				Yii::app()->user->setFlash('success', $form->itemId . " has been added to the product backlog." ); 
+			}
+		}
 	}
 }

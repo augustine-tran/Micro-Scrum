@@ -60,6 +60,7 @@ class Project extends TrackStarActiveRecord
 	        // class name for the relations automatically generated below.
 	        return array(
 	            'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
+	            'sprints' => array(self::HAS_MANY, 'Sprint', 'project_id'),
 	            'users' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
 	            'columns' => array(self::MANY_MANY, 'Column', 'tbl_project_column(project_id, column_id)'),
 	        );
@@ -192,5 +193,13 @@ class Project extends TrackStarActiveRecord
 		return $command->execute()==1 ? true : false;
 	}
 	
-	
+	public function getBacklogTasks() {
+		$dataProvider=new CActiveDataProvider('Issue', array(
+			'criteria'=>array(
+		 		'condition'=>'project_id=:projectId AND column_id IS NULL AND sprint_id IS NULL ',
+		 		'params'=>array(':projectId'=>$this->id),
+		 	), 
+		));
+		return $dataProvider->getData();
+	}
 }

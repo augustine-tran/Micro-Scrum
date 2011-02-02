@@ -4,13 +4,12 @@ body
 	padding: 0;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #d6d6d6 url(background.gif) repeat-y center top;
+	background: url("content.png") repeat-x scroll 0 0 #FFFFFF;
 }
 
 #page
 {
 	margin-bottom: 20px;
-	background: white;
 	border: 1px solid #898989;
 	border-top:none;
 	border-bottom:none;

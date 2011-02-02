@@ -8,9 +8,6 @@ $this->menu=array(
 	array('label'=>'Manage Issue', 'url'=>array('admin', 'pid'=>$this->getProject()->id)),
 );
 ?>
-
-<h1>Issues</h1>
-
 <?php 
 //$this->widget('zii.widgets.CListView', array(
 //	'dataProvider'=>$dataProvider,
@@ -117,6 +114,12 @@ endif;
 			</div>
 			<div class="column-body">
 			</div>
+		</div>
+		<div class="column">
+			<div class="column-header">
+				<h2>Done</h2>
+			</div>
+			<div class="column-body"></div>
 		</div>
 		<div class="column">
 			<div class="column-header">

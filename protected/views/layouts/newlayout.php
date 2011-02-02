@@ -12,7 +12,24 @@
 <body>
 	<div id="wrapper">
 		<div id="container">
-			<div id="header">Header is here</div>
+			<div id="header">
+				<div id="topnav">
+					<h1 id="logo">Track Star</h1>
+					<div id="secondmenu">Settings</div>
+				</div>
+				<?php $this->widget('zii.widgets.CMenu',array(
+					'items'=>array(
+						//array('label'=>'Home', 'url'=>array('/site/index')),
+						array('label'=>'Projects', 'url'=>array('/project')),
+						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+						array('label'=>'Contact', 'url'=>array('/site/contact')),
+						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					),
+					'id' => 'mainmenu', 
+					'htmlOptions' => array('class' => 'kkk')
+				)); ?>
+			</div>
 			<div id="mainbody">
 				<?php echo $content;?>
 			</div>

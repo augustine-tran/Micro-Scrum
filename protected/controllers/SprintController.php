@@ -1,24 +1,19 @@
 <?php
 
-class IssueController extends Controller
+class SprintController extends Controller
 {
-	/**
-	 * @var string the default layout for the views. Defaults to 'column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='column1';
-//	public $layout='newlayout';
-
+	protected $_project;
+	
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
 	
 	/**
-	 * @var private property containing the associated Project model instance.
+	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	private $_project = null; 
-	
+	public $layout='column2';
 
 	/**
 	 * @return array action filters
@@ -27,7 +22,7 @@ class IssueController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'projectContext + create index admin', //perform a check to ensure valid project context 
+			'projectContext +admin planning assignTask', // perform access control for CRUD operations
 		);
 	}
 
@@ -41,10 +36,10 @@ class IssueController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','planning','assignTask'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -59,36 +54,14 @@ class IssueController extends Controller
 
 	/**
 	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView()
+	public function actionView($id)
 	{
-		$issue=$this->loadModel(true);
-		$comment=$this->createComment($issue);
-
 		$this->render('view',array(
-					  'model'=>$issue,
-				      'comment'=>$comment,
-				      ));
+			'model'=>$this->loadModel($id),
+		));
 	}
-	
-	/**
-	 * Creates a new comment on an issue.
-	 */
-	protected function createComment($issue)
-	{
-		$comment=new Comment;  
-		if(isset($_POST['Comment']))
-		{
-			$comment->attributes=$_POST['Comment'];
-			if($issue->addComment($comment))
-			{
-				Yii::app()->user->setFlash('commentSubmitted',"Your comment has been added." );
-				$this->refresh();
-			}
-		}
-		return $comment;
-	}
-	
 
 	/**
 	 * Creates a new model.
@@ -96,16 +69,14 @@ class IssueController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Issue;
-		
-		$model->project_id = $this->_project->id;
+		$model=new Sprint;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Issue']))
+		if(isset($_POST['Sprint']))
 		{
-			$model->attributes=$_POST['Issue'];
+			$model->attributes=$_POST['Sprint'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -118,17 +89,18 @@ class IssueController extends Controller
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate()
+	public function actionUpdate($id)
 	{
-		$model=$this->loadModel();
+		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Issue']))
+		if(isset($_POST['Sprint']))
 		{
-			$model->attributes=$_POST['Issue'];
+			$model->attributes=$_POST['Sprint'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -141,17 +113,18 @@ class IssueController extends Controller
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete()
+	public function actionDelete($id)
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel()->delete();
+			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(array('index'));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
@@ -162,17 +135,7 @@ class IssueController extends Controller
 	 */
 	public function actionIndex()
 	{
-		//$dataProvider=new CActiveDataProvider('Issue');
-		$dataProvider=new CActiveDataProvider('Issue', array(
-			'criteria'=>array(
-		 		'condition'=>'project_id=:projectId',
-		 		'params'=>array(':projectId'=>$this->_project->id),
-		 	), 
-		));
-		$cs=Yii::app()->getClientScript();
-		$cs->registerCoreScript('jquery.ui');
-		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/main.js', CClientScript::POS_END);
-		$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/task.css');
+		$dataProvider=new CActiveDataProvider('Sprint');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -183,12 +146,11 @@ class IssueController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Issue('search');
-		if(isset($_GET['Issue']))
-			$model->attributes=$_GET['Issue'];
+		$model=new Sprint('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Sprint']))
+			$model->attributes=$_GET['Sprint'];
 
-		$model->project_id = $this->_project->id;
-		
 		$this->render('admin',array(
 			'model'=>$model,
 		));
@@ -197,25 +159,17 @@ class IssueController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the ID of the model to be loaded
 	 */
-	public function loadModel($withComments=false)
+	public function loadModel()
 	{
 		if($this->_model===null)
 		{
 			if(isset($_GET['id']))
-			{
-			     if($withComments)
-			     {
-				      $this->_model=Issue::model()->with(array(
-					                     'comments'=>array('with'=>'author')))->findbyPk($_GET['id']);
-				 }
-			     else
-			     {
-				      $this->_model=Issue::model()->findbyPk($_GET['id']);
-			     }
-			}
+				$this->_model=Sprint::model()->findbyPk($_GET['id']);
 			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
+				//throw new CHttpException(404,'The requested page does not exist.');
+				throw new CException('The is an example of throwing a CException');
 		}
 		return $this->_model;
 	}
@@ -226,34 +180,32 @@ class IssueController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='issue-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='sprint-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
 	
-	
-	/**
+/**
 	 * In-class defined filter method, configured for use in the above filters() method
 	 * It is called before the actionCreate() action method is run in order to ensure a proper project context
 	 */
 	public function filterProjectContext($filterChain)
 	{   
-		     //set the project identifier based on either the GET or POST input request variables, since we allow both types for our actions   
-		     $projectId = null;
-		     if(isset($_GET['pid'])) 
-		          $projectId = $_GET['pid'];
-		     else
-		          if(isset($_POST['pid'])) 
-				       $projectId = $_POST['pid'];
+	     //set the project identifier based on either the GET or POST input request variables, since we allow both types for our actions   
+	     $projectId = null;
+	     if(isset($_GET['pid'])) 
+	          $projectId = $_GET['pid'];
+	     else
+	          if(isset($_POST['pid'])) 
+			       $projectId = $_POST['pid'];
 
-			 $this->loadProject($projectId);   
+		 $this->loadProject($projectId);   
 
-		     //complete the running of other filters and execute the requested action
-		     $filterChain->run(); 
-	} 
-	 
+	     //complete the running of other filters and execute the requested action
+	     $filterChain->run(); 
+	}
 	
 	/**
 	 * Protected method to load the associated Project model class
@@ -262,27 +214,40 @@ class IssueController extends Controller
 	 */
 	protected function loadProject($project_id)
 	{
-			 //if the project property is null, create it based on input id
-			 if($this->_project===null)
-			 {
-				$this->_project=Project::model()->findbyPk($project_id);
-				if($this->_project===null)
-	            {
-					throw new CHttpException(404,'The requested project does not exist.'); 
-				}
-			 }
+		 //if the project property is null, create it based on input id
+		 if($this->_project===null)
+		 {
+			$this->_project=Project::model()->findbyPk($project_id);
+			if($this->_project===null)
+            {
+				throw new CHttpException(404,'The requested project does not exist.'); 
+			}
+		 }
 
-			 return $this->_project; 
-	} 
-	
-	/**
-	 *	Returns the project model instance to which this issue belongs
-	 */
-	public function getProject()
-	{
-		return $this->_project;
+		 return $this->_project; 
 	}
 	
+	public function actionPlanning() {
+		$this->layout = 'column1';
+		$cs=Yii::app()->getClientScript();
+		$cs->registerCoreScript('jquery.ui');
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/main.js', CClientScript::POS_END);
+		$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/task.css');
+		$this->render('planning', array(
+			'project' => $this->_project
+		));
+	}
 	
-	
+	public function actionAssignTask() {
+		$this->loadModel();
+		if (isset($_POST['SprintIssueForm'])) {
+			$form = new SprintIssueForm();
+			$form->attributes=$_POST['SprintIssueForm'];
+			$form->project = $this->_project;
+			$form->sprint = $this->_model;
+			if ($form->validate()) {
+				Yii::app()->user->setFlash('success', $form->itemId . " has been added to the sprint." ); 
+			}
+		}
+	}
 }
