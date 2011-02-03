@@ -4,7 +4,7 @@ body
 	padding: 0;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: url("content.png") repeat-x scroll 0 0 #FFFFFF;
+	background: url("body-stripe.png") repeat scroll 0 0 #FFFFFF;
 }
 
 #page
@@ -19,8 +19,8 @@ body
 {
 	margin: 0;
 	padding: 0;
-	height:100px;
-	background:white url(header.jpg) no-repeat left top;
+	height:85px;
+	background:white url(header-stripe.png) repeat;
 	border-bottom: 1px solid #898989;
 }
 
@@ -46,9 +46,10 @@ body
 #logo
 {
 	padding: 10px 20px;
-	font-size: 200%;
+	font-size: 300%;
+	color: #FFEEFF;
 	/* HIDES LOGO TEXT */
-	text-indent:-5000px;
+	/*text-indent:-5000px*/;
 }
 
 #mainmenu

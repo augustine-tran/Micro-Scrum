@@ -20,7 +20,9 @@
 
 <div class="container" id="page">
 
-	<div id="header"></div><!-- header image is embeded into the #header declaration in main.css -->
+	<div id="header">
+		<div id="logo">Track Star</div>
+	</div><!-- header image is embeded into the #header declaration in main.css -->
 	
 
 	<div id="mainmenu">

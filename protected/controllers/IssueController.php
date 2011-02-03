@@ -6,7 +6,7 @@ class IssueController extends Controller
 	 * @var string the default layout for the views. Defaults to 'column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='column1';
+	public $layout='column2';
 //	public $layout='newlayout';
 
 	/**
@@ -27,7 +27,7 @@ class IssueController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'projectContext + create index admin', //perform a check to ensure valid project context 
+			'projectContext + create update index admin', //perform a check to ensure valid project context 
 		);
 	}
 
@@ -162,6 +162,7 @@ class IssueController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$this->layout = 'column1';
 		//$dataProvider=new CActiveDataProvider('Issue');
 		$dataProvider=new CActiveDataProvider('Issue', array(
 			'criteria'=>array(
