@@ -6,10 +6,37 @@
 }
 
 .column-header {
+	position: relative;
+	height: 40px;
 }
 .column-header h2 {
-	 padding: 5px 0 0 10px;
-	 color: #000;
+	position: absolute;
+	color: #000;
+	top: 10px;
+	left: 10px;
+}
+
+.column-header .sprint-point {
+	position: absolute;
+	top: 13px;
+	right: 10px;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+.column-header .finished-point {
+	color: #AECD5F;
+}
+
+.column-header .finished-point {
+	color: #AECD5F;
+}
+
+.column-header a {
+	text-decoration: none;
+}
+.column-header a:hover {
+	text-decoration: underline;
 }
 
 .column-body {
@@ -40,17 +67,34 @@
 	color: #555555;
 }
 
-.task-type {
+.task-priority {
 	display: inline;
 	height: 6px;
 	float: left;
 	font-size: 8px;
-	font-weight: 100;
+	font-weight: bold;
 	background-color: #FF8533;
 	line-height: 50%;
 	color: #FFFFFF;
 	padding:5px 5px 3px;
 	text-transform: uppercase;
+}
+
+.task-priority select {
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.priority-0 {
+	background-color: red;
+}
+
+.priority-1 {
+	background-color: green;
+}
+
+.priority-2 {
+	background-color: blue;
 }
 
 .task-time {
@@ -61,6 +105,10 @@
 	padding: 1px 5px;
 	color: #FFFFFF;
 	line-height: 110%;
+}
+
+.task-time select {
+	font-size: 10px;
 }
 
 .task-user {
@@ -82,7 +130,7 @@
 	padding-top: 2px;
 }
 
-.task-priority {
+.task-tag {
 	float: left;
 	font-size: 8px;
 	margin: 0px 3px 0px 5px;

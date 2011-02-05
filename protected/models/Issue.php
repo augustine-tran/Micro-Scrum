@@ -10,6 +10,10 @@ class Issue extends TrackStarActiveRecord
 	const TYPE_FEATURE=1;
 	const TYPE_TASK=2;
 	
+	const PRIORITY_MUST_HAVE = 0;
+	const PRIORITY_SHOULD_HAVE = 1;
+	const PRIORITY_WOULD_HAVE = 2;
+	
 	const STATUS_NOT_STARTED=0;
 	const STATUS_STARTED=1;
 	const STATUS_FINISHED=2;
@@ -25,6 +29,7 @@ class Issue extends TrackStarActiveRecord
 	 * @var integer $sprint_id
 	 * @var integer $owner_id
 	 * @var integer $requester_id
+	 * @var integer $point
 	 * @var string $create_time
 	 * @var integer $create_user_id
 	 * @var string $update_time
@@ -57,13 +62,13 @@ class Issue extends TrackStarActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('project_id, type_id, status_id, owner_id, requester_id, create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
+			array('project_id, type_id, status_id, owner_id, requester_id, priority_id, create_user_id, update_user_id, point', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>256),
 			array('description', 'length', 'max'=>2000),
 			array('create_time, update_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, project_id, sprint_id, column_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
+			array('id, name, description, project_id, sprint_id, column_id, point, priority_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -94,8 +99,11 @@ class Issue extends TrackStarActiveRecord
 			'description' => 'Description',
 			'project_id' => 'Project',
 			'sprint_id' => 'Sprint',
+			'priority_id' => 'Priority',
 			'type_id' => 'Type',
 			'status_id' => 'Status',
+			'column_id' => 'Column',
+			'point' => 'Business Point',
 			'owner_id' => 'Owner',
 			'requester_id' => 'Requester',
 			'create_time' => 'Create Time',
@@ -172,6 +180,15 @@ class Issue extends TrackStarActiveRecord
 		);
 	}
 	
+	public function getPriorityOptions()
+	{
+		return array(  
+			self::PRIORITY_MUST_HAVE => 'Must have',
+			self::PRIORITY_SHOULD_HAVE => 'Should have',
+			self::PRIORITY_WOULD_HAVE => 'Would have',
+		);
+	}
+	
 	/**
 	 * @return string the status text display for the current issue
 	 */ 
@@ -179,6 +196,12 @@ class Issue extends TrackStarActiveRecord
 	{
 		$statusOptions=$this->statusOptions;
 		return isset($statusOptions[$this->status_id]) ? $statusOptions[$this->status_id] : "unknown status ({$this->status_id})";
+	}
+	
+	public function getPriorityText()
+	{
+		$priorityOptions=$this->priorityOptions;
+		return isset($priorityOptions[$this->priority_id]) ? $priorityOptions[$this->priority_id] : "unknown priority ({$this->priority_id})";
 	}
 
 	/**

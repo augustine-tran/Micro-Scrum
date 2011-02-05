@@ -110,4 +110,23 @@ class Sprint extends CActiveRecord
 		));
 		return $dataProvider->getData();
 	}
+	
+	public function getBacklogPoint() {
+		$sql = "SELECT sum(point) as p FROM tbl_issue WHERE sprint_id=:sprintId ";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":sprintId", $this->id, PDO::PARAM_INT);
+		$reader = $command->query();
+		$result = $reader->read();
+		return $result['p'];
+	}
+	
+	public function getFinishedPoint() {
+		$sql = "SELECT sum(point) as p FROM tbl_issue WHERE sprint_id=:sprintId AND status_id=:status ";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":sprintId", $this->id, PDO::PARAM_INT);
+		$command->bindValue(":status", Issue::STATUS_FINISHED, PDO::PARAM_INT);
+		$reader = $command->query();
+		$result = $reader->read();
+		return intval($result['p']);
+	}
 }

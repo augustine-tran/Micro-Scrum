@@ -25,5 +25,9 @@ $this->menu=array(
 		'sort',
 		'project_id',
 		'status',
+		array(
+			'name' => 'Point',
+			'value' => CHtml::encode($model->getBacklogPoint())
+		)
 	),
 )); ?>

@@ -202,4 +202,13 @@ class Project extends TrackStarActiveRecord
 		));
 		return $dataProvider->getData();
 	}
+	
+	public function getProductBacklogPoint() {
+		$sql = "SELECT sum(point) as p FROM tbl_issue WHERE project_id=:projectId AND column_id IS NULL AND sprint_id IS NULL";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":projectId", $this->id, PDO::PARAM_INT);
+		$reader = $command->query();
+		$result = $reader->read();
+		return $result['p'];
+	}
 }

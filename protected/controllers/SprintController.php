@@ -35,7 +35,7 @@ class SprintController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','burnDownChart'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -231,6 +231,14 @@ class SprintController extends Controller
 		$this->layout = 'column1';
 		$cs=Yii::app()->getClientScript();
 		$cs->registerCoreScript('jquery.ui');
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.jeditable.js', CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.tools.min.js', CClientScript::POS_HEAD);
+		$app_data = 'var App = ' . CJavaScript::jsonEncode(array(
+			'base_url' => Yii::app()->createUrl('/'),
+			'loader_img' => Yii::app()->request->baseUrl . '/images/ajax-loader.gif'
+		));
+		$cs->registerScript('init_js', $app_data, CClientScript::POS_BEGIN);
+		
 		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/main.js', CClientScript::POS_END);
 		$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/task.css');
 		$this->render('planning', array(
@@ -249,5 +257,13 @@ class SprintController extends Controller
 				Yii::app()->user->setFlash('success', $form->itemId . " has been added to the sprint." ); 
 			}
 		}
+	}
+	
+	public function actionBurnDownChart($id) {
+		echo 'burn down chart is yet finished';
+	}
+	
+	public function actionRefreshPoint($id) {
+		$this->loadModel();
 	}
 }

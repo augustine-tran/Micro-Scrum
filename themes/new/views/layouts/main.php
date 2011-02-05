@@ -52,6 +52,10 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
-
+<!-- overlayed element -->
+<div class="overlay" id="overlay">
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+</div>
 </body>
 </html>
