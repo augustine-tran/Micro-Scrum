@@ -4,7 +4,7 @@
  * This is the model class for table "tbl_column".
  *
  * The followings are the available columns in table 'tbl_column':
- * @property string $column_id
+ * @property string $id
  * @property string $name
  */
 class Column extends CActiveRecord
@@ -38,7 +38,7 @@ class Column extends CActiveRecord
 			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('column_id, name', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,6 +50,8 @@ class Column extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
+			'issues' => array(self::HAS_MANY, 'Issue', 'column_id'),
 		);
 	}
 
@@ -59,7 +61,7 @@ class Column extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'column_id' => 'Column',
+			'id' => 'ID',
 			'name' => 'Name',
 		);
 	}
@@ -75,11 +77,31 @@ class Column extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('column_id',$this->column_id,true);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getTotalPoint($sprintId) {
+		$sql = "SELECT sum(point) as p FROM tbl_issue WHERE column_id=:columnId AND sprint_id = :sprintId ";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":sprintId", $sprintId, PDO::PARAM_INT);
+		$command->bindValue(":columnId", $this->id, PDO::PARAM_INT);
+		$reader = $command->query();
+		$result = $reader->read();
+		return $result['p'];
+	}
+	
+	public function getTasks($sprintId) {
+		$dataProvider=new CActiveDataProvider('Issue', array(
+			'criteria'=>array(
+		 		'condition'=>'sprint_id=:sprintId AND column_id IS NULL ',
+		 		'params'=>array(':sprintId'=>$this->id),
+		 	), 
+		));
+		return $dataProvider->getData();
 	}
 }

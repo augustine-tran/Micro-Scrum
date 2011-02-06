@@ -57,6 +57,7 @@ class Sprint extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'issues' => array(self::HAS_MANY, 'Issue', 'sprint_id'),
 		);
 	}
@@ -128,5 +129,24 @@ class Sprint extends CActiveRecord
 		$reader = $command->query();
 		$result = $reader->read();
 		return intval($result['p']);
+	}
+	
+	public function getColumnOptions() {
+		return array(
+			0 => 'To do',
+			1 => 'In progress',
+			2 => 'To be verified',
+			3 => 'Done',
+		);
+	}
+	
+	public function getColumnTasks($columnId) {
+		$dataProvider=new CActiveDataProvider('Issue', array(
+			'criteria'=>array(
+		 		'condition'=>'sprint_id=:sprintId AND column_id = :columnId ',
+		 		'params'=>array(':columnId'=>$columnId, 'sprintId' => $this->id),
+		 	), 
+		));
+		return $dataProvider->getData();
 	}
 }

@@ -38,10 +38,21 @@
 			),
 		)); ?>
 	</div><!-- mainmenu -->
-
-	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-		'links'=>$this->breadcrumbs,
-	)); ?><!-- breadcrumbs -->
+	
+	<div class="toolbar">
+		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+			'links'=>$this->breadcrumbs,
+		)); ?><!-- breadcrumbs -->
+		<div class="actions">
+			<ul>
+				<li><a href="http://localhost/trackstar/index.php/issue/create?pid=1&ajax=1" class="ajaxLoad" rel="#overlay">Add Task</a></li>
+				<li>Add 2</li>
+				<li>Add 3</li>
+				<li>Add 4</li>
+				<li>Add 5</li>
+			</ul>
+		</div>
+	</div>
 
 	<?php echo $content; ?>
 

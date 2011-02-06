@@ -70,7 +70,7 @@ class ColumnController extends Controller
 		{
 			$model->attributes=$_POST['Column'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->column_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -94,7 +94,7 @@ class ColumnController extends Controller
 		{
 			$model->attributes=$_POST['Column'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->column_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

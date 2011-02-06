@@ -39,7 +39,7 @@ class SprintController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','planning','assignTask'),
+				'actions'=>array('create','update','planning','assignTask','taskBoard'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -265,5 +265,27 @@ class SprintController extends Controller
 	
 	public function actionRefreshPoint($id) {
 		$this->loadModel();
+	}
+	
+	public function actionTaskBoard($id) {
+		$this->loadModel();
+		
+		$this->layout = 'column1';
+		$cs=Yii::app()->getClientScript();
+		$cs->registerCoreScript('jquery.ui');
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.jeditable.js', CClientScript::POS_HEAD);
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/jquery.tools.min.js', CClientScript::POS_HEAD);
+		$app_data = 'var App = ' . CJavaScript::jsonEncode(array(
+			'base_url' => Yii::app()->createUrl('/'),
+			'loader_img' => Yii::app()->request->baseUrl . '/images/ajax-loader.gif'
+		));
+		$cs->registerScript('init_js', $app_data, CClientScript::POS_BEGIN);
+		
+		$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/main.js', CClientScript::POS_END);
+		$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/task.css');
+		$this->render('taskBoard', array(
+			'model' => $this->_model,
+			'columns' => $this->_model->project->columns
+		));
 	}
 }

@@ -283,3 +283,34 @@ jQUery Tools Css for Overlay
 	height:35px;
 	width:35px;
 }
+
+.toolbar {
+	position: relative;
+	height: 35px;
+	background: #ECECEC;
+}
+
+.breadcrumbs {
+	float: left;
+	display: inline;
+	position: absolute;
+	left: 10px;
+}
+
+.toolbar .actions {
+	position: absolute;
+	display: inline;
+	float: right;
+	right: 10px;
+}
+
+.toolbar .actions ul {
+	margin: 4px 0;
+}
+
+.toolbar .actions ul li {
+	display: inline;
+	padding: 5px 0px 5px 0px;
+	margin-right: 20px;
+	float: left;
+}

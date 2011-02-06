@@ -110,9 +110,13 @@ class IssueController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		if (Yii::app()->request->getIsAjaxRequest()) {
+			$this->renderPartial('_form', array('model'=>$model));
+		} else {
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		}
 	}
 
 	/**
