@@ -23,7 +23,7 @@ $this->breadcrumbs=array(
 					<div class="task-time"><?php echo CHtml::encode($item->point);?></div>
 				</div>
  				<div class="task-user"><?php echo CHtml::encode($item->owner->username);?></div>
-				<p class="task-title"><?php echo CHtml::encode($item->name);?></p>
+				<p id="name-<?php echo $item->id;?>" class="task-title"><?php echo nl2br(CHtml::encode($item->name));?></p>
 				<div class="task-status">
 					<div class="panel">
 						<div class="task-tag"></div>
@@ -60,7 +60,7 @@ foreach($sprints as $sprint):
 					<div id="point-<?php echo $item->id;?>" class="task-time" title="<?php echo $this->createUrl('issue/quickUpdate', array('id' => $item->id))?>"><?php echo CHtml::encode($item->point);?></div>
 				</div>
  				<div class="task-user"><?php echo CHtml::encode($item->owner->username);?></div>
-				<p class="task-title"><?php echo CHtml::encode($item->name);?></p>
+				<p id="name-<?php echo $item->id;?>" class="task-title"><?php echo nl2br(CHtml::encode($item->name));?></p>
 				<div class="task-status">
 					<div class="pane">
 						<div class="task-tag"></div>

@@ -159,4 +159,8 @@
 .column  .placeholder{  
 	background: #f0f0f0;  
 	border:1px dashed #ddd;  
-}  
+}
+
+.task .task-title textarea {
+	height: 100px;
+}

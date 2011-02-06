@@ -58,10 +58,22 @@ $(document).ready(function(){
 		data   : "{'1':'1','2':'2','3':'3','5':'5','8':'8','13':'13','20':'20'}",
 		type   : 'select',
 		submit : 'OK',
+		cancel : 'Close',
 		style  : 'inherit',
 		callback: function(value, settings) {
 			$(this).parents('.column').trigger('update-estimation');
 		}
+  	});
+
+	// setup estimation time editable select box
+	$(".task .task-title").editable(App.base_url + '/issue/quickUpdate', { 
+		indicator : '<img src="' + App.loader_img + '" alt="Saving..."/>',
+		type   : 'textarea',
+		loadurl: App.base_url + '/issue/load4Edit',
+		height : 'none',
+		submit : 'OK',
+		cancel : 'Close',
+		onblur : 'ignore'
   	});
 	
 	var priority_classes = ['priority-0', 'priority-1', 'priority-2'];
@@ -71,6 +83,7 @@ $(document).ready(function(){
 		data   : "{'0':'Must have','1':'Should have','2':'Would have'}",
 		type   : 'select',
 		submit : 'OK',
+		cancel : 'Close',
 		style  : 'inherit',
 		callback: function(value, settings) {
 			var self = $(this);

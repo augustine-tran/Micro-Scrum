@@ -44,7 +44,7 @@ class IssueController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','quickUpdate'),
+				'actions'=>array('create','update','quickUpdate','load4Edit'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -293,8 +293,29 @@ class IssueController extends Controller
 					case 'priority_id':
 						echo CJavaScript::jsonEncode(array($issue->priority_id, $issue->getPriorityText()));
 						break;
+					case 'name':
+						echo nl2br($_POST['value']);
+						break;
 					default:
 						echo $_POST['value'];
+					break;
+				}
+			}
+		} else {
+			throw new Exception('Do not find task id');
+		}
+	}
+	
+	public function actionLoad4Edit() {
+		if (preg_match('/(\w+)-(\d+)/', $_GET['id'], $matches)) {
+			$issue = Issue::model()->findByPk($matches[2]);
+			if ($issue) {
+				switch ($matches[1]) {
+					case 'name':
+						echo $issue->name;
+						break;
+					default:
+						echo $issue->$matches[1];
 					break;
 				}
 			}

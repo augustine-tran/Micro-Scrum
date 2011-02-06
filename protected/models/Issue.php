@@ -7,7 +7,7 @@ class Issue extends TrackStarActiveRecord
 {
 	
 	const TYPE_BUG=0;
-	const TYPE_FEATURE=1;
+	const TYPE_STORY=1;
 	const TYPE_TASK=2;
 	
 	const PRIORITY_MUST_HAVE = 0;
@@ -80,10 +80,12 @@ class Issue extends TrackStarActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'parent' => array(self::BELONGS_TO, 'Issue', 'parent_id'),
 			'owner' => array(self::BELONGS_TO, 'User', 'owner_id'),
 			'project' => array(self::BELONGS_TO, 'Project', 'project_id'),
 			'requester' => array(self::BELONGS_TO, 'User', 'requester_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'issue_id'),
+			'tasks' => array(self::HAS_MANY, 'Issue', 'parent_id'),
 			'commentCount' => array(self::STAT, 'Comment', 'issue_id'),
 		);
 	}
@@ -108,6 +110,7 @@ class Issue extends TrackStarActiveRecord
 			'requester_id' => 'Requester',
 			'create_time' => 'Create Time',
 			'create_user_id' => 'Create User',
+			'parent_id' => 'Parent',
 			'update_time' => 'Update Time',
 			'update_user_id' => 'Update User',
 		);
@@ -162,7 +165,7 @@ class Issue extends TrackStarActiveRecord
 	{
 		return array(
 				self::TYPE_BUG=>'Bug',
-				self::TYPE_FEATURE=>'Feature',
+				self::TYPE_STORY=>'Story',
 				self::TYPE_TASK=>'Task',
 		);
 		
