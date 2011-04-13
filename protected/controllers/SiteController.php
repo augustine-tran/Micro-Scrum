@@ -130,4 +130,48 @@ class SiteController extends Controller
 		var_dump(Yii::getLogger()->getLogs());
 	}
 	
+	public function actionFakeBackLog() {
+		$total = 150;
+		$limit = Yii::app()->request->getQuery('limit', 30);
+		$start = Yii::app()->request->getQuery('start', 0);
+		
+		$limit = min(100 - $start, $limit);
+		
+		$data = array ('total' => $total, 'data' => FakeDataHelper::generateStories(0, $limit), 'success' => true);
+		echo CJSON::encode($data);
+	}
+	
+	public function actionFakeSprint() {
+		$total = 100;
+		$sprint = Yii::app()->request->getQuery('sprint', 1);
+		$limit = Yii::app()->request->getQuery('limit', 20);
+		$start = Yii::app()->request->getQuery('start', 0);
+		
+		$limit = min(100 - $start, $limit);
+		
+		$data = array ('total' => $total, 'data' => FakeDataHelper::generateStories($sprint, $limit), 'success' => true);
+		echo CJSON::encode($data);
+	}
+	
+	public function actionFakeMembers() {
+		$total = 10;
+		$limit = Yii::app()->request->getQuery('limit', 10);
+		$start = Yii::app()->request->getQuery('start', 0);
+		
+		$limit = min(100 - $start, $limit);
+		
+		$data = array ('total' => $total, 'data' => FakeDataHelper::generateMembers($limit), 'success' => true);
+		echo CJSON::encode($data);
+	}
+	
+	public function actionFakeProjectMembers() {
+		$total = 4;
+		$limit = Yii::app()->request->getQuery('limit', 10);
+		$start = Yii::app()->request->getQuery('start', 0);
+		
+		$limit = min(100 - $start, $limit);
+		
+		$data = array ('total' => $total, 'data' => FakeDataHelper::generateProjectMembers(1, $limit), 'success' => true);
+		echo CJSON::encode($data);
+	}
 }

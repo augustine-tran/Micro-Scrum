@@ -1,0 +1,1063 @@
+{
+    "name": "project.xds",
+    "projectId": "4F560312-E2BE-4EAD-AA7F-9249E35ADE32",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "spacesToIndent": 4,
+        "codeGenFormat": "Class",
+        "extPath": "http://extjs.cachefly.net/ext-3.3.1/",
+        "exportPath": ".",
+        "lineEnding": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true
+    },
+    "xdsVersion": "1.1.2",
+    "components": [
+        {
+            "id": "MyViewport",
+            "cid": "viewport",
+            "jsClass": "MyViewport",
+            "snapToGrid": 10,
+            "userConfig": {
+                "layout": "fit"
+            },
+            "cn": [
+                {
+                    "id": "MyUserComponent2",
+                    "cid": "usercomponent",
+                    "jsClass": "ProjectPanel",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "jsClass": "ProjectPanel",
+                        "userXType": "ProjectPanel"
+                    },
+                    "userComponent": "MyPanel"
+                }
+            ]
+        },
+        {
+            "id": "MyGrid",
+            "cid": "grid",
+            "jsClass": "BackLogGrid",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "-ext-undefined-",
+                "store": "BackLog",
+                "stripeRows": true,
+                "enableDragDrop": true
+            },
+            "userXType": "backlog_grid",
+            "cn": [
+                {
+                    "id": "MyColumn",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "story",
+                        "header": "Story",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn1",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "task",
+                        "header": "Task",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "-ext-undefined-"
+                    }
+                },
+                {
+                    "id": "MyColumn2",
+                    "cid": "numbercolumn",
+                    "jsClass": "MyColumn2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "hour",
+                        "header": "Hours",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "right",
+                        "format": "0,000"
+                    }
+                },
+                {
+                    "id": "MyColumn3",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "assignee",
+                        "header": "Assignee",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn10",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn10",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "header": "Priority",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "dataIndex": "priority"
+                    }
+                },
+                {
+                    "id": "MyPagingToolbar",
+                    "cid": "pagingtoolbar",
+                    "jsClass": "MyPagingToolbar",
+                    "dock": "bbar",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "store": "BackLog"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyGrid2",
+            "cid": "grid",
+            "jsClass": "SrpintStoriesGrid",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "Sprint / Stories / Tasks",
+                "store": "SprintStories",
+                "collapsible": true,
+                "stripeRows": true,
+                "enableDragDrop": true
+            },
+            "userXType": "sprint_stories_grid",
+            "cn": [
+                {
+                    "id": "MyColumn11",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "story",
+                        "header": "Story",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "groupName": "Story"
+                    }
+                },
+                {
+                    "id": "MyColumn12",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "task",
+                        "header": "Task",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "-ext-undefined-"
+                    }
+                },
+                {
+                    "id": "MyColumn13",
+                    "cid": "numbercolumn",
+                    "jsClass": "MyColumn2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "hour",
+                        "header": "Hours",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "right",
+                        "format": "0,000"
+                    }
+                },
+                {
+                    "id": "MyColumn14",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "assignee",
+                        "header": "Assignee",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn15",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn10",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "header": "Priority",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "dataIndex": "priority"
+                    }
+                },
+                {
+                    "id": "MyColumn4",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn4",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "header": "Status",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "dataIndex": "status"
+                    }
+                },
+                {
+                    "id": "MyPagingToolbar1",
+                    "cid": "pagingtoolbar",
+                    "jsClass": "MyPagingToolbar1",
+                    "dock": "bbar",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "store": "SprintStories"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyPanel",
+            "cid": "panel",
+            "jsClass": "ProjectPanel",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "Project: Track Star",
+                "layout": "border"
+            },
+            "userXType": "ProjectPanel",
+            "cn": [
+                {
+                    "id": "MyPanel1",
+                    "cid": "panel",
+                    "jsClass": "MyPanel1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "title": "Product Backlog",
+                        "width": 194,
+                        "frame": true,
+                        "autoRef": "backLog",
+                        "collapsible": true,
+                        "layout": "border",
+                        "region": "west",
+                        "split": true
+                    },
+                    "cn": [
+                        {
+                            "id": "MyUserComponent",
+                            "cid": "usercomponent",
+                            "jsClass": "BackLogGrid",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "jsClass": "BackLogGrid",
+                                "userXType": "backlog_grid",
+                                "flex": 2,
+                                "region": "center"
+                            },
+                            "userComponent": "MyGrid"
+                        },
+                        {
+                            "id": "MyForm",
+                            "cid": "form",
+                            "jsClass": "MyForm",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Story / Task form",
+                                "flex": 1,
+                                "hideLabels": true,
+                                "margins": "-ext-undefined-",
+                                "collapsible": true,
+                                "region": "south",
+                                "width": 100,
+                                "split": true,
+                                "height": 200
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyCombo",
+                                    "cid": "combobox",
+                                    "jsClass": "MyCombo",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "fieldLabel": "Label",
+                                        "anchor": "100%",
+                                        "name": "story",
+                                        "store": "BackLog",
+                                        "displayField": "task",
+                                        "valueField": "id",
+                                        "mode": "local"
+                                    }
+                                },
+                                {
+                                    "id": "MyTextField",
+                                    "cid": "textfield",
+                                    "jsClass": "MyTextField",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "fieldLabel": "Label",
+                                        "anchor": "100%",
+                                        "name": "task"
+                                    }
+                                },
+                                {
+                                    "id": "MyNumberField",
+                                    "cid": "numberfield",
+                                    "jsClass": "MyNumberField",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "fieldLabel": "Label",
+                                        "anchor": "100%",
+                                        "name": "hour"
+                                    }
+                                },
+                                {
+                                    "id": "MySliderField",
+                                    "cid": "sliderfield",
+                                    "jsClass": "MySliderField",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "value": 1,
+                                        "fieldLabel": "Label",
+                                        "anchor": "100%",
+                                        "maxValue": 3,
+                                        "name": "priority"
+                                    }
+                                },
+                                {
+                                    "id": "MyToolbar",
+                                    "cid": "toolbar",
+                                    "jsClass": "MyToolbar",
+                                    "dock": "fbar",
+                                    "snapToGrid": 10,
+                                    "cn": [
+                                        {
+                                            "id": "MyButton",
+                                            "cid": "button",
+                                            "jsClass": "MyButton",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "text": "Reset"
+                                            }
+                                        },
+                                        {
+                                            "id": "MyButton1",
+                                            "cid": "button",
+                                            "jsClass": "MyButton1",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "text": "Add"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "MyCombo1",
+                                    "cid": "combobox",
+                                    "jsClass": "MyCombo1",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "fieldLabel": "Label",
+                                        "anchor": "100%",
+                                        "name": "assignee",
+                                        "store": "ProjectMembers",
+                                        "valueField": "id",
+                                        "displayField": "name",
+                                        "mode": "local"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "MyTabPanel",
+                    "cid": "tabpanel",
+                    "jsClass": "MyPanel6",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "title": "My Panel",
+                        "region": "center",
+                        "width": 100,
+                        "activeTab": 1
+                    },
+                    "cn": [
+                        {
+                            "id": "MyPanel2",
+                            "cid": "panel",
+                            "jsClass": "MyPanel6",
+                            "snapToGrid": 10,
+                            "layoutConfig": {
+                                "align": "stretch",
+                                "defaultMargins": {
+                                    "top": 0,
+                                    "right": 5,
+                                    "left": 0,
+                                    "bottom": 0
+                                }
+                            },
+                            "userConfig": {
+                                "title": "Dashboard",
+                                "layout": "hbox"
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyPanel3",
+                                    "cid": "panel",
+                                    "jsClass": "MyPanel3",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "title": "Activities",
+                                        "flex": 1.5
+                                    }
+                                },
+                                {
+                                    "id": "MyPanel4",
+                                    "cid": "panel",
+                                    "jsClass": "MyPanel4",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "title": "Burndown Chart",
+                                        "flex": 1
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "MyPanel5",
+                            "cid": "panel",
+                            "jsClass": "MyPanel",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Scrum Board",
+                                "frame": true,
+                                "autoRef": "scrumBoard",
+                                "layout": "border"
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyContainer",
+                                    "cid": "container",
+                                    "jsClass": "MyContainer1",
+                                    "snapToGrid": 10,
+                                    "layoutConfig": {
+                                        "defaultMargins": {
+                                            "top": 0,
+                                            "right": 5,
+                                            "bottom": 0,
+                                            "left": 0
+                                        },
+                                        "align": "stretch"
+                                    },
+                                    "userConfig": {
+                                        "region": "center",
+                                        "width": 100,
+                                        "autoRef": "taskBoard",
+                                        "layout": "hbox"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "MyPanel6",
+                                            "cid": "panel",
+                                            "jsClass": "MyPanel2",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "title": "In progress",
+                                                "flex": 1,
+                                                "autoRef": "columnProgress",
+                                                "margins": "-ext-undefined-",
+                                                "frame": true,
+                                                "collapsible": "-ext-undefined-",
+                                                "layout": "fit"
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "MyDataView",
+                                                    "cid": "dataview",
+                                                    "jsClass": "MyDataView",
+                                                    "snapToGrid": 10,
+                                                    "userConfig": {
+                                                        "itemSelector": "div",
+                                                        "store": "SprintStories",
+                                                        "tpl": "<tpl for=\".\">\n<div class=\"task\" id=\"task-{id}\">\n\t\t\t<div class=\"task-header\">\n\t\t\t\t<div class=\"task-label\">\n\t\t\t\t\t<div id=\"priority_id-{id}\" class=\"task-priority priority-{priority}\">{priority}</div>\n\t\t\t\t\t<div class=\"task-time\">{hour}</div>\n\t\t\t\t</div>\n \t\t\t\t<div class=\"task-user\">{assignee}</div>\n\t\t\t\t<p id=\"name-{id}\" class=\"task-title\">{task}</p>\n\t\t\t\t<div class=\"task-status\">\n\t\t\t\t\t<div class=\"panel\">\n\t\t\t\t\t\t<div class=\"task-tag\"></div>\n\t\t\t\t\t\t<a href=\"#\" class=\"button-toggler\"></a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"task-body\" style=\"display: none;\">\n\t\t\t\t<div class=\"section\">{description}</div>\n\t\t\t</div>\n\t\t</div>\n</tpl>",
+                                                        "autoScroll": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "MyPanel7",
+                                            "cid": "panel",
+                                            "jsClass": "MyPanel3",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "title": "To be verify",
+                                                "flex": 1,
+                                                "autoRef": "columnVerify",
+                                                "frame": true,
+                                                "collapsible": "-ext-undefined-"
+                                            }
+                                        },
+                                        {
+                                            "id": "MyPanel8",
+                                            "cid": "panel",
+                                            "jsClass": "MyPanel4",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "title": "Done",
+                                                "flex": 1,
+                                                "autoRef": "columnDone",
+                                                "frame": true,
+                                                "collapsible": "-ext-undefined-"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "MyUserComponent1",
+                                    "cid": "usercomponent",
+                                    "jsClass": "SrpintStoriesGrid",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "jsClass": "SrpintStoriesGrid",
+                                        "userXType": "sprint_stories_grid",
+                                        "region": "west",
+                                        "split": true,
+                                        "width": 116
+                                    },
+                                    "userComponent": "MyGrid2"
+                                },
+                                {
+                                    "id": "MyToolbar1",
+                                    "cid": "toolbar",
+                                    "jsClass": "MyToolbar1",
+                                    "dock": "tbar",
+                                    "snapToGrid": 10,
+                                    "cn": [
+                                        {
+                                            "id": "MyCycleButton",
+                                            "cid": "cyclebutton",
+                                            "jsClass": "MyCycleButton",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "showText": true
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "MyCheckItem",
+                                                    "cid": "menucheckitem",
+                                                    "jsClass": "MyCheckItem",
+                                                    "snapToGrid": 10,
+                                                    "userConfig": {
+                                                        "text": "Sprint 1",
+                                                        "checked": true
+                                                    }
+                                                },
+                                                {
+                                                    "id": "MyCheckItem1",
+                                                    "cid": "menucheckitem",
+                                                    "jsClass": "MyCheckItem1",
+                                                    "snapToGrid": 10,
+                                                    "userConfig": {
+                                                        "text": "Menu Item 1"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "MyCheckItem2",
+                                                    "cid": "menucheckitem",
+                                                    "jsClass": "MyCheckItem2",
+                                                    "snapToGrid": 10,
+                                                    "userConfig": {
+                                                        "text": "Menu Item 0"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "MyPanel9",
+                            "cid": "panel",
+                            "jsClass": "MyPanel9",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Members",
+                                "layout": "border"
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyUserComponent3",
+                                    "cid": "usercomponent",
+                                    "jsClass": "MyGrid1",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "jsClass": "ProjectMembersGrid",
+                                        "userXType": "project_members_grid",
+                                        "region": "center",
+                                        "collapsible": "-ext-undefined-"
+                                    },
+                                    "userComponent": "MyGrid1"
+                                },
+                                {
+                                    "id": "MyUserComponent4",
+                                    "cid": "usercomponent",
+                                    "jsClass": "MembersGrid",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "jsClass": "MembersGrid",
+                                        "userXType": "members_grid",
+                                        "region": "south",
+                                        "collapsible": true,
+                                        "split": true
+                                    },
+                                    "userComponent": "MyGrid3"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "MyGrid1",
+            "cid": "grid",
+            "jsClass": "ProjectMembersGrid",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "Project Members",
+                "store": "ProjectMembers",
+                "titleCollapse": true,
+                "enableDragDrop": true,
+                "ddGroup": "ProjectMembersGridDD"
+            },
+            "userXType": "project_members_grid",
+            "cn": [
+                {
+                    "id": "MyColumn5",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn5",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "id",
+                        "header": "Id",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn6",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn6",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "name",
+                        "header": "Name",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "-ext-undefined-"
+                    }
+                },
+                {
+                    "id": "MyColumn7",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn7",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "avatar",
+                        "header": "Avatar",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn8",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn8",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "bool",
+                        "header": "Action",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyGrid3",
+            "cid": "grid",
+            "jsClass": "MembersGrid",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "Members",
+                "store": "Members",
+                "width": 100,
+                "collapsible": "-ext-undefined-",
+                "enableDragDrop": true,
+                "ddGroup": "ProjectMembersGridDD"
+            },
+            "userXType": "members_grid",
+            "cn": [
+                {
+                    "id": "MyColumn9",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn5",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "id",
+                        "header": "Id",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn16",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn6",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "name",
+                        "header": "Name",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "-ext-undefined-"
+                    }
+                },
+                {
+                    "id": "MyColumn17",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn7",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "avatar",
+                        "header": "Avatar",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn18",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn8",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "bool",
+                        "header": "Action",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyPagingToolbar3",
+                    "cid": "pagingtoolbar",
+                    "jsClass": "MyPagingToolbar2",
+                    "dock": "bbar",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "store": "Members"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "MyStore",
+            "cid": "jsonstore",
+            "jsClass": "BackLogStore",
+            "snapToGrid": 10,
+            "userConfig": {
+                "storeId": "BackLog",
+                "root": "data",
+                "url": "trackstar/index.php/site/fakeBackLog",
+                "autoLoad": true
+            },
+            "cn": [
+                {
+                    "id": "MyField",
+                    "cid": "datafield",
+                    "jsClass": "MyField",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "story"
+                    }
+                },
+                {
+                    "id": "MyField1",
+                    "cid": "datafield",
+                    "jsClass": "MyField1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "sprint"
+                    }
+                },
+                {
+                    "id": "MyField2",
+                    "cid": "datafield",
+                    "jsClass": "MyField2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "task"
+                    }
+                },
+                {
+                    "id": "MyField3",
+                    "cid": "datafield",
+                    "jsClass": "MyField3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "hour"
+                    }
+                },
+                {
+                    "id": "MyField4",
+                    "cid": "datafield",
+                    "jsClass": "MyField4",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "status"
+                    }
+                },
+                {
+                    "id": "MyField5",
+                    "cid": "datafield",
+                    "jsClass": "MyField5",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "priority"
+                    }
+                },
+                {
+                    "id": "MyField6",
+                    "cid": "datafield",
+                    "jsClass": "MyField6",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "assignee"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyStore1",
+            "cid": "jsonstore",
+            "jsClass": "SprintStoryStore",
+            "snapToGrid": 10,
+            "userConfig": {
+                "root": "data",
+                "url": "trackstar/index.php/site/fakeSprint",
+                "autoLoad": true,
+                "storeId": "SprintStories"
+            },
+            "cn": [
+                {
+                    "id": "MyField7",
+                    "cid": "datafield",
+                    "jsClass": "MyField",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "story"
+                    }
+                },
+                {
+                    "id": "MyField8",
+                    "cid": "datafield",
+                    "jsClass": "MyField1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "sprint"
+                    }
+                },
+                {
+                    "id": "MyField9",
+                    "cid": "datafield",
+                    "jsClass": "MyField2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "task"
+                    }
+                },
+                {
+                    "id": "MyField10",
+                    "cid": "datafield",
+                    "jsClass": "MyField3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "hour"
+                    }
+                },
+                {
+                    "id": "MyField11",
+                    "cid": "datafield",
+                    "jsClass": "MyField4",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "status"
+                    }
+                },
+                {
+                    "id": "MyField12",
+                    "cid": "datafield",
+                    "jsClass": "MyField5",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "priority"
+                    }
+                },
+                {
+                    "id": "MyField13",
+                    "cid": "datafield",
+                    "jsClass": "MyField6",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "assignee"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyStore2",
+            "cid": "arraystore",
+            "jsClass": "PrioritiesStore",
+            "snapToGrid": 10,
+            "userConfig": {
+                "storeId": "Priorities",
+                "data": "[\n[0, 'Must have'],\n[1, 'Should have'],\n[2, 'Could have'],\n[3, 'Would have']\n]"
+            },
+            "cn": [
+                {
+                    "id": "MyField14",
+                    "cid": "datafield",
+                    "jsClass": "MyField14",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "id",
+                        "type": "int"
+                    }
+                },
+                {
+                    "id": "MyField15",
+                    "cid": "datafield",
+                    "jsClass": "MyField15",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "name",
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyStore3",
+            "cid": "jsonstore",
+            "jsClass": "MembersStore",
+            "snapToGrid": 10,
+            "userConfig": {
+                "storeId": "Members",
+                "url": "trackstar/index.php/site/fakeMembers",
+                "root": "data",
+                "autoLoad": true
+            },
+            "cn": [
+                {
+                    "id": "MyField16",
+                    "cid": "datafield",
+                    "jsClass": "MyField16",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "id"
+                    }
+                },
+                {
+                    "id": "MyField17",
+                    "cid": "datafield",
+                    "jsClass": "MyField17",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "name"
+                    }
+                },
+                {
+                    "id": "MyField18",
+                    "cid": "datafield",
+                    "jsClass": "MyField18",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "avatar"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "MyStore4",
+            "cid": "jsonstore",
+            "jsClass": "ProjectMembersStore",
+            "snapToGrid": 10,
+            "userConfig": {
+                "url": "trackstar/index.php/site/fakeProjectMembers",
+                "storeId": "ProjectMembers",
+                "root": "data",
+                "autoLoad": true
+            },
+            "cn": [
+                {
+                    "id": "MyField19",
+                    "cid": "datafield",
+                    "jsClass": "MyField16",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "id"
+                    }
+                },
+                {
+                    "id": "MyField20",
+                    "cid": "datafield",
+                    "jsClass": "MyField17",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "name"
+                    }
+                },
+                {
+                    "id": "MyField21",
+                    "cid": "datafield",
+                    "jsClass": "MyField18",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "avatar"
+                    }
+                }
+            ]
+        }
+    ]
+}
